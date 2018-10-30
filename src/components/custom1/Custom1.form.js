@@ -11,11 +11,30 @@ export default function(...extend) {
     {
       key: 'api',
       ignore: true
-    }
-  ], [
-    {
-      key: 'custom',
-      components: Custom1EditDisplay
     },
-  ]);
+    {
+      key: 'validation',
+      ignore: true
+    },
+    {
+      key: 'data',
+      ignore: true
+    },
+    {
+      key: 'conditional',
+      ignore: true
+    },
+    {
+      key: 'logic',
+      ignore: true
+    },
+  ],
+  [
+    {
+      key: 'tabs',
+      label:'Custom Properties',
+      components: Custom1EditDisplay
+    }
+  ],
+  ...extend);
 }
