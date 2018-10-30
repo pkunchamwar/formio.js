@@ -35,6 +35,7 @@ import TextAreaForm from './textarea/TextArea.form';
 import TextFieldForm from './textfield/TextField.form';
 import TimeForm from './time/Time.form';
 import WellForm from './well/Well.form';
+import Custom1Form from './custom1/Custom1.form';
 
 Components.address.editForm = AddressForm;
 Components.button.editForm = ButtonForm;
@@ -71,5 +72,6 @@ Components.textarea.editForm = TextAreaForm;
 Components.textfield.editForm = TextFieldForm;
 Components.time.editForm = TimeForm;
 Components.well.editForm = WellForm;
+Components.custom1.editForm = Custom1Form;
 
 export default Components;

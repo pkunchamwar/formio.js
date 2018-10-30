@@ -43,7 +43,7 @@ export default class WebformBuilder extends Webform {
             type: 'htmlelement',
             internal: true,
             tag: 'div',
-            className: 'alert alert-info',
+            className: 'slds-notify slds-notify_alert alert alert-info',
             attrs: [
               { attr: 'id', value: `${parent.id}-placeholder` },
               { attr: 'style', value: 'text-align:center; margin-bottom: 0px;' },
@@ -107,7 +107,11 @@ export default class WebformBuilder extends Webform {
       data: {
         title: 'Data',
         weight: 30
-      }
+      },
+      custom: {
+        title: 'Custom',
+        weight: 40
+      },
     };
   }
 
@@ -127,12 +131,12 @@ export default class WebformBuilder extends Webform {
 
   setBuilderElement() {
     return this.onElement.then(() => {
-      this.addClass(this.wrapper, 'row formbuilder');
+      this.addClass(this.wrapper, 'slds-grid slds-gutters slds-p-around_medium row formbuilder');
       this.builderSidebar = this.ce('div', {
-        class: 'col-xs-4 col-sm-3 col-md-2 formcomponents'
+        class: 'slds-col slds-large-size_3-of-12  col-xs-4 col-sm-3 col-md-2 formcomponents'
       });
       this.prependTo(this.builderSidebar, this.wrapper);
-      this.addClass(this.element, 'col-xs-8 col-sm-9 col-md-10 formarea');
+      this.addClass(this.element, 'slds-col slds-large-size_9-of-12 slds-box col-xs-8 col-sm-9 col-md-10 formarea');
       this.element.component = this;
     });
   }
@@ -215,7 +219,9 @@ export default class WebformBuilder extends Webform {
       this.dialog.close();
     }
     this.dialog = this.createModal(componentCopy.name);
-    const formioForm = this.ce('div');
+    const formioForm = this.ce('div', {
+      class: 'slds-p-around_xx-small'
+    });
     this.componentPreview = this.ce('div', {
       class: 'component-preview'
     });
@@ -237,15 +243,15 @@ export default class WebformBuilder extends Webform {
 
     const componentEdit = this.ce('div', {}, [
       this.ce('div', {
-        class: 'row'
+        class: 'row slds-modal__header'
       }, [
         this.ce('div', {
-          class: 'col col-sm-6'
+          class: 'col col-sm-6 slds-col'
         }, this.ce('p', {
           class: 'lead'
         }, `${componentInfo.title} Component`)),
         this.ce('div', {
-          class: 'col col-sm-6'
+          class: 'col col-sm-6 slds-col'
         }, [
           this.ce('div', {
             class: 'pull-right',
@@ -259,16 +265,16 @@ export default class WebformBuilder extends Webform {
         ])
       ]),
       this.ce('div', {
-        class: 'row'
+        class: 'row slds-modal__content slds-grid slds-p-around_xx-small'
       }, [
         this.ce('div', {
-          class: 'col col-sm-6'
+          class: 'col col-sm-6 slds-col'
         }, formioForm),
         this.ce('div', {
-          class: 'col col-sm-6'
+          class: 'col col-sm-6 slds-col'
         }, [
           this.ce('div', {
-            class: 'card panel panel-default preview-panel'
+            class: 'slds-card card panel panel-default preview-panel'
           }, [
             this.ce('div', {
               class: 'card-header panel-heading'
@@ -288,7 +294,8 @@ export default class WebformBuilder extends Webform {
           ])
         ])
       ])
-    ]);
+    ]
+  );
 
     // Append the settings page to the dialog body.
     this.dialog.body.appendChild(componentEdit);
@@ -469,11 +476,11 @@ export default class WebformBuilder extends Webform {
     }
 
     info.element = this.ce('div', {
-      class: 'card panel panel-default form-builder-panel',
+      class: 'slds-card card panel panel-default form-builder-panel',
       id: `group-panel-${info.key}`
     }, [
       this.ce('div', {
-        class: 'card-header panel-heading form-builder-group-header'
+        class: 'slds-card__header card-header panel-heading form-builder-group-header'
       }, [
         this.ce('h5', {
           class: 'mb-0 panel-title'
@@ -482,13 +489,13 @@ export default class WebformBuilder extends Webform {
     ]);
     info.body = this.ce('div', {
       id: `group-container-${info.key}`,
-      class: 'card-body panel-body no-drop'
+      class: 'card-body panel-body no-drop slds-grid slds-grid_vertical slds-gutters slds-p-around_medium'
     });
 
     // Add this group body to the drag containers.
     this.sidebarContainers.push(info.body);
 
-    let groupBodyClass = 'panel-collapse collapse';
+    let groupBodyClass = 'panel-collapse collapse slds-card__body';
     if (info.default) {
       groupBodyClass += ' in';
       if (!hasBootstrapJS) {
@@ -543,7 +550,7 @@ export default class WebformBuilder extends Webform {
     }
     component.element = this.ce('span', {
       id: `builder-${component.key}`,
-      class: 'btn btn-primary btn-xs btn-block formcomponent drag-copy'
+      class: 'btn btn-primary btn-xs btn-block formcomponent drag-copy slds-box slds-box_xx-small slds-m-bottom_xxx-small slds-button slds-show slds-button_outline-brand slds-text-align_left'
     });
     if (component.icon) {
       component.element.appendChild(this.ce('i', {
@@ -747,6 +754,7 @@ export default class WebformBuilder extends Webform {
         block: false,
         action: 'submit',
         disableOnInvalid: true,
+        customClass: 'slds-m-top_x-small',
         theme: 'primary'
       });
     }

@@ -5,7 +5,7 @@ export default class WizardBuilder extends WebformBuilder {
   setBuilderElement() {
     return super.setBuilderElement().then(() => {
       const buildRegion = this.ce('div', {
-        class: 'col-xs-8 col-sm-9 col-md-10 formarea'
+        class: 'slds-col slds-large-size_9-of-12 slds-box col-xs-8 col-sm-9 col-md-10 formarea'
       });
 
       this.element.setAttribute('class', '');

@@ -8,7 +8,7 @@ module.exports = (entry, output) => {
     mode: 'development',
     entry: `./lib/${entry}`,
     output: {
-      path: path.resolve(__dirname, '../dist'),
+      path: path.resolve(__dirname, '../lib'),
       filename: output
     }
   });

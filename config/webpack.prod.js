@@ -8,11 +8,11 @@ module.exports = (entry, output) => {
     mode: 'production',
     output: {
       filename: output
-    },
-    plugins: [
-      new webpack.BannerPlugin(
-        `formiojs v${packageJSON.version} | https://unpkg.com/formiojs@${packageJSON.version}/LICENSE.txt`
-      )
-    ]
+    }
+    // plugins: [
+    //   new webpack.BannerPlugin(
+    //     `formiojs v${packageJSON.version} | https://unpkg.com/formiojs@${packageJSON.version}/LICENSE.txt`
+    //   )
+    // ]
   });
 };

@@ -37,6 +37,7 @@ import WellComponent from './well/Well';
 import LocationComponent from './location/Location';
 import FileComponent from './file/File';
 import TabsComponent from './tabs/Tabs';
+import Custom1Component from './custom1/Custom1';
 
 export default {
   nested: NestedComponent,
@@ -77,5 +78,6 @@ export default {
   survey: SurveyComponent,
   well: WellComponent,
   location: LocationComponent,
-  file: FileComponent
+  file: FileComponent,
+  custom1: Custom1Component
 };

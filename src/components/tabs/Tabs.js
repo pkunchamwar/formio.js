@@ -53,7 +53,7 @@ export default class TabsComponent extends NestedComponent {
 
   createElement() {
     this.tabBar = this.ce('ul', {
-      class: 'nav nav-tabs'
+      class: 'nav nav-tabs slds-tabs_scoped__nav'
     });
     this.tabContent = this.ce('div', {
       class: 'tab-content'
@@ -63,11 +63,11 @@ export default class TabsComponent extends NestedComponent {
     _.each(this.component.components, (tab, index) => {
       const tabPanel = this.ce('div', {
         role: 'tabpanel',
-        class: 'tab-pane',
+        class: 'tab-pane slds-tabs_scoped__content',
         id: tab.key
       });
       const tabLink = this.ce('a', {
-        class: 'nav-link',
+        class: 'nav-link slds-tabs_scoped__link',
         href: `#${tab.key}`
       }, tab.label);
       this.addEventListener(tabLink, 'click', (event) => {
@@ -75,7 +75,7 @@ export default class TabsComponent extends NestedComponent {
         this.setTab(index);
       });
       const tabElement = this.ce('li', {
-        class: 'nav-item',
+        class: 'nav-item slds-tabs_scoped__item',
         role: 'presentation'
       }, tabLink);
       tabElement.tabLink = tabLink;
@@ -122,15 +122,15 @@ export default class TabsComponent extends NestedComponent {
     }
 
     _.each(this.tabLinks, (tabLink) => {
-      this.removeClass(tabLink, 'active');
-      this.removeClass(tabLink.tabLink, 'active');
+      this.removeClass(tabLink, 'active slds-is-active');
+      this.removeClass(tabLink.tabLink, 'active slds-is-active');
     });
-    this.addClass(this.tabLinks[index], 'active');
-    this.addClass(this.tabLinks[index].tabLink, 'active');
+    this.addClass(this.tabLinks[index], 'active slds-is-active');
+    this.addClass(this.tabLinks[index].tabLink, 'active slds-is-active');
     _.each(this.tabs, (tab) => {
-      this.removeClass(tab, 'active');
+      this.removeClass(tab, 'active slds-is-active');
     });
-    this.addClass(this.tabs[index], 'active');
+    this.addClass(this.tabs[index], 'active slds-is-active');
   }
 
   /**

@@ -61,6 +61,7 @@ export default class TextFieldComponent extends BaseComponent {
   }
 
   createInput(container) {
+    console.log('this is createinput for text field');
     if (!this.isMultipleMasksField) {
       const inputGroup = super.createInput(container);
       this.addCounter(container);
@@ -223,7 +224,7 @@ export default class TextFieldComponent extends BaseComponent {
   createMaskInput(textInput) {
     const id = `${this.key}-mask`;
     const maskInput = this.ce('select', {
-      class: 'form-control formio-multiple-mask-select',
+      class: 'form-control slds-input formio-multiple-mask-select',
       id
     });
     const self = this;

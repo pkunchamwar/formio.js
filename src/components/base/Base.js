@@ -653,7 +653,9 @@ export default class BaseComponent {
   }
 
   createModal() {
-    const modalBody = this.ce('div');
+    const modalBody = this.ce('div', {
+      class: 'slds-modal__container '
+    });
     const modalOverlay = this.ce('div', {
       class: 'formio-dialog-overlay'
     });
@@ -663,11 +665,11 @@ export default class BaseComponent {
     });
 
     const dialog = this.ce('div', {
-      class: 'formio-dialog formio-dialog-theme-default component-settings'
+      class: 'slds-backdrop slds-backdrop_open formio-dialog formio-dialog-theme-default component-settings'
     }, [
       modalOverlay,
       this.ce('div', {
-        class: 'formio-dialog-content'
+        class: 'slds-modal_medium formio-dialog-content'
       }, [
         modalBody,
         closeDialog
@@ -699,10 +701,11 @@ export default class BaseComponent {
    * @returns {string} - The class name of this component.
    */
   get className() {
-    let className = this.hasInput ? 'form-group has-feedback ' : '';
-    className += `formio-component formio-component-${this.component.type} `;
+    let className = this.hasInput ? 'form-group has-feedback slds-form-element ' : '';
+    // className += 'slds-form-element ';
+    className += `formio-component formio-component-${this.component.type} slds-form-element `;
     if (this.key) {
-      className += `formio-component-${this.key} `;
+      className += `formio-component-${this.key} slds-form-element `;
     }
     if (this.component.customClass) {
       className += this.component.customClass;
@@ -1114,7 +1117,7 @@ export default class BaseComponent {
     if (this.labelIsHidden()) {
       return;
     }
-    let className = 'control-label';
+    let className = 'control-label slds-form-element__label';
     let style = '';
 
     const {
@@ -1363,6 +1366,7 @@ export default class BaseComponent {
    * @returns {HTMLElement} - Either the input or the group that contains the input.
    */
   createInput(container) {
+    // create a input element of type
     const input = this.ce(this.info.type, this.info.attr);
     this.setInputMask(input);
     const inputGroup = this.addInputGroup(input, container);
@@ -1921,7 +1925,12 @@ export default class BaseComponent {
       return;
     }
     if (input && container) {
-      input = container.appendChild(input);
+      // adding a container element for form inputs to wrap- as per salesforce designs systems.
+      const inputContainer = this.ce('div', {
+        class: 'slds-form-element__control'
+      });
+      inputContainer.appendChild(input);
+      input = container.appendChild(inputContainer);
     }
     this.inputs.push(input);
     this.hook('input', input, container);
@@ -2619,7 +2628,7 @@ export default class BaseComponent {
     const attributes = {
       name: this.options.name,
       type: this.component.inputType || 'text',
-      class: 'form-control',
+      class: 'form-control slds-input',
       lang: this.options.language
     };
 
