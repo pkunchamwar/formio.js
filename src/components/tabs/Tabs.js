@@ -56,7 +56,8 @@ export default class TabsComponent extends NestedComponent {
       class: 'nav nav-tabs slds-tabs_scoped__nav'
     });
     this.tabContent = this.ce('div', {
-      class: 'tab-content'
+      class: 'tab-content slds-scrollable',
+      style: 'height:40rem'
     });
     this.tabs = [];
     this.tabLinks = [];
@@ -125,12 +126,14 @@ export default class TabsComponent extends NestedComponent {
       this.removeClass(tabLink, 'active slds-is-active');
       this.removeClass(tabLink.tabLink, 'active slds-is-active');
     });
-    this.addClass(this.tabLinks[index], 'active slds-is-active');
-    this.addClass(this.tabLinks[index].tabLink, 'active slds-is-active');
+    this.addClass(this.tabLinks[index], 'active slds-is-active myclasstabs');
+    this.addClass(this.tabLinks[index].tabLink, 'active slds-is-active myclasstab1');
     _.each(this.tabs, (tab) => {
-      this.removeClass(tab, 'active slds-is-active');
+      this.removeClass(tab, 'active slds-is-active slds-show');
+      this.addClass(tab, 'slds-hide');
     });
-    this.addClass(this.tabs[index], 'active slds-is-active');
+    this.addClass(this.tabs[index], 'active slds-is-active slds-show');
+    this.removeClass(this.tabs[index], 'slds-hide');
   }
 
   /**
